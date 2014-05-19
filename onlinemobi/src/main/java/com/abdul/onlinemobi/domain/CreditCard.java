@@ -22,7 +22,27 @@ public class CreditCard implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private int creditNumber;
+    private String expiryDate;
 
+    public int getCreditNumber() {
+        return creditNumber;
+    }
+
+    public String getExpiryDate() {
+        return expiryDate;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public String getBalance() {
+        return balance;
+    }
+    private String owner;
+    private String balance;
+   
     public Long getId() {
         return id;
     }

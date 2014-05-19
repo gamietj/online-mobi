@@ -6,12 +6,12 @@
 
 package com.abdul.onlinemobi.services;
 
-import org.junit.After;
+/*import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.Assert.*;*/
 
 /**
  *
@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
  */
 public class MobileQTYServiceTest {
     
-    public MobileQTYServiceTest() {
+    /*public MobileQTYServiceTest() {
     }
     
     @BeforeClass
@@ -42,5 +42,5 @@ public class MobileQTYServiceTest {
     // The methods must be annotated with annotation @Test. For example:
     //
     // @Test
-    // public void hello() {}
+    // public void hello() {}*/
 }

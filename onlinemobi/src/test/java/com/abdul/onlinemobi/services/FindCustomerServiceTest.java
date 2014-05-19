@@ -1,4 +1,4 @@
-/*
+/*/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -6,12 +6,12 @@
 
 package com.abdul.onlinemobi.services;
 
-import org.junit.After;
+/*import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.Assert.*;*/
 
 /**
  *
@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
  */
 public class FindCustomerServiceTest {
     
-    public FindCustomerServiceTest() {
+   /* public FindCustomerServiceTest() {
     }
     
     @BeforeClass
@@ -42,5 +42,5 @@ public class FindCustomerServiceTest {
     // The methods must be annotated with annotation @Test. For example:
     //
     // @Test
-    // public void hello() {}
+    // public void hello() {}*/
 }

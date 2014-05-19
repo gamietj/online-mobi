@@ -6,10 +6,10 @@
 
 package com.abdul.onlinemobi.services;
 
-import org.junit.After;
+/*import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
+import org.junit.BeforeClass;/*
 
 /**
  *
@@ -17,7 +17,7 @@ import org.junit.BeforeClass;
  */
 public class AvailableMobileService {
     
-    public AvailableMobileService() {
+   /* public AvailableMobileService() {
     }
     
     @BeforeClass
@@ -40,5 +40,5 @@ public class AvailableMobileService {
     // The methods must be annotated with annotation @Test. For example:
     //
     // @Test
-    // public void hello() {}
+    // public void hello() {}*/
 }
