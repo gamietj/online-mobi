@@ -37,12 +37,16 @@ public class Customer implements Serializable {
     private String email;
     @Embedded
     private Contact contact;
-  
+    @Embedded
+    private Demographic demographic;
+
+
+    
     //@OneToMany(cascade = CascadeType.ALL)
     //@JoinColumn(name = "customer_id")
     //List<Order> order;
     
-    //@OneToMany
+    //@OneToMany(cascade = CascadeType.ALL)
    // @JoinColumn(name = "customer_id")
     //List<CreditCard> creditcard;
   
@@ -53,6 +57,7 @@ public class Customer implements Serializable {
         age = builder.age;
         email = builder.email;
         contact = builder.contact;
+        demographic = builder.demographic;
         //order = builder.order;
         //creditcard = builder.creditcard;
        }
@@ -68,9 +73,12 @@ public class Customer implements Serializable {
         private int age;
         private String email;
         private Contact contact;
+        private Demographic demographic;
         //List<Order> order;
         //List<CreditCard> creditcard;
 
+       
+        
         public Builder(String email) {
             this.email = email;
         }
@@ -97,6 +105,10 @@ public class Customer implements Serializable {
 
         public Builder contact(Contact value) {
             contact = value;
+            return this;
+        }
+        public Builder Demographic(Demographic value){
+            demographic = value;
             return this;
         }
 
@@ -158,6 +170,9 @@ public class Customer implements Serializable {
 
     public String getEmail() {
         return email;
+    }
+        public Demographic getDemographic() {
+        return demographic;
     }
              
   

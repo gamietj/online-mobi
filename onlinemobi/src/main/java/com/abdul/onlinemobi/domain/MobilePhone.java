@@ -22,15 +22,80 @@ public class MobilePhone implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String make;
+    private String model;
+    private String description;
+    private int qty;
     
-
+    
+    private MobilePhone(Builder builder){
+        id=builder.id;
+        make=builder.make;
+        model=builder.model;
+        qty=builder.qty;
+        
+    }
+    public MobilePhone(){}
+    
+    public static class Builder{
+        private Long id;
+        private String make;
+        private String model;
+        private String description;
+        private int qty;
+        
+        public Builder(String model){
+            this.model = model;
+        }
+        public Builder id(Long value){
+            id  = value;
+            return this;
+        }
+        public Builder make(String value){
+            make = value;
+            return this;
+        }
+        public Builder qty(int value){
+            qty = value;
+            return this;
+        }
+        
+        public Builder MobilePhone(MobilePhone mobilephone){
+            id=mobilephone.getId();
+            make=mobilephone.getMake();
+            model=mobilephone.getMake();
+            qty=mobilephone.getQty();
+            return this;
+        }
+        
+        public MobilePhone build(){
+            return new MobilePhone(this);
+        }
+               
+    
+    
+    }
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getMake() {
+        return make;
     }
+
+    public String getModel() {
+        return model;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getQty() {
+        return qty;
+    }
+
+   
 
     @Override
     public int hashCode() {
