@@ -7,8 +7,9 @@
 package com.abdul.onlinemobi.services;
 
 import com.abdul.onlinemobi.app.conf.ConnectionConfig;
-import com.abdul.onlinemobi.domain.Customer;
-import com.abdul.onlinemobi.repository.CustomerRepository;
+import com.abdul.onlinemobi.domain.MobilePhone;
+import com.abdul.onlinemobi.repository.MobilePhoneRepository;
+import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.Assert;
@@ -22,40 +23,40 @@ import org.testng.annotations.Test;
  *
  * @author Khulsum
  */
-public class FindCustomerServiceTest {
+public class AvailableMobileServiceTest {
     
     public static ApplicationContext ctx;
-    public FindCustomerService service;
-    public CustomerRepository repo;
-    
-    
-    public FindCustomerServiceTest() {
-    }
+    public AvailableMobileService service;
+    private MobilePhoneRepository mobileRepository;
     
     @Test
-    public void FindCustomer(){
-        repo = ctx.getBean(CustomerRepository.class);
-        service = ctx.getBean(FindCustomerService.class);
+    public void getAvailableMobiles(){
+        mobileRepository = ctx.getBean(MobilePhoneRepository.class);
+        service = ctx.getBean(AvailableMobileService.class);
         
-        Customer cust1 = new Customer.Builder("gamietj@gmail.com")
-                              .firstname("gamiet")
-                              .idnumber("8704225065083")
-                              .build();
-          repo.save(cust1);
-          Customer customer = service.getCustomer("8704225065083");
-          Assert.assertEquals(customer.getFirstname(),"gamiet");
-         
+        MobilePhone m1 = new MobilePhone.Builder("9320")
+                         .qty(3).build();
+        MobilePhone m2 = new MobilePhone.Builder("S4")
+                         .qty(0).build();
+        MobilePhone m3 = new MobilePhone.Builder("S5")
+                         .qty(9).build();
+        
+        mobileRepository.save(m1);
+        mobileRepository.save(m2);
+        mobileRepository.save(m3);   
+        
+        List<MobilePhone>mobile = service.getAvailableMobiles();
+        Assert.assertEquals(mobile.size(),2);
+        
+    }
+    
+    public AvailableMobileServiceTest() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    
 
     @BeforeClass
     public static void setUpClass() throws Exception {
-        
         ctx = new AnnotationConfigApplicationContext(ConnectionConfig.class);
     }
 

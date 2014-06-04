@@ -32,6 +32,7 @@ public class Customer implements Serializable {
     
     private String firstname;
     private String lastname;
+    private String idnumber;
     private int age;
     @Column(unique = true)
     private String email;
@@ -42,40 +43,44 @@ public class Customer implements Serializable {
 
 
     
-    //@OneToMany(cascade = CascadeType.ALL)
-    //@JoinColumn(name = "customer_id")
-    //List<Order> order;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id")
+    List<Orders> order;
     
-    //@OneToMany(cascade = CascadeType.ALL)
-   // @JoinColumn(name = "customer_id")
-    //List<CreditCard> creditcard;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id")
+    List<CreditCard> creditcard;
   
     private Customer(Builder builder) {
         id= builder.id;
         firstname = builder.firstname;
         lastname=builder.lastname;
+        idnumber=builder.idnumber;
         age = builder.age;
         email = builder.email;
         contact = builder.contact;
         demographic = builder.demographic;
-        //order = builder.order;
-        //creditcard = builder.creditcard;
+        order = builder.order;
+        creditcard = builder.creditcard;
        }
     
     public Customer() {
         }
+
+  
     
     public static class Builder {
 
         private Long id;
         private String firstname;
         private String lastname;
+        private String idnumber;
         private int age;
         private String email;
         private Contact contact;
         private Demographic demographic;
-        //List<Order> order;
-        //List<CreditCard> creditcard;
+        List<Orders> order;
+        List<CreditCard> creditcard;
 
        
         
@@ -97,6 +102,10 @@ public class Customer implements Serializable {
             lastname = value;
             return this;
         }
+        public Builder idnumber(String value){
+            idnumber=value;
+            return this;
+        }
 
         public Builder age(int value) {
             age = value;
@@ -112,23 +121,24 @@ public class Customer implements Serializable {
             return this;
         }
 
-       /* public Builder order(List<Order> value) {
-            order = value;
-            return this;
-        }
-
+          public Builder order(List<Orders> value) {
+              order = value;
+              return this;
+         }
+        
         public Builder creditcard(List<CreditCard> value) {
             creditcard = value;
             return this;
-        }*/
+        }
         public Builder customer(Customer customer){
             id = customer.getId();
             firstname = customer.getFirstname();
             lastname = customer.getLastname();
+            idnumber = customer.getIdnumber();
             age = customer.getAge();
             email = customer.getEmail();
-            //order = customer.getOrder();
-            //creditcard = customer.getCreditCard();
+            order = customer.getOrder();
+            creditcard = customer.getCreditCard();
             contact = customer.getContact();
             return this;
             
@@ -140,17 +150,17 @@ public class Customer implements Serializable {
         
     }
     
-   /* public List<CreditCard> getCreditCard() {
+      public List<CreditCard> getCreditCard() {
         return creditcard;
-    }*/
+    }
 
     public int getAge() {
         return age;
     }
     
-   /* public List<Order> getOrder() {
-        return order;
-    }*/
+      public List<Orders> getOrder() {
+          return order;
+      }
 
     public Long getId() {
         return id;
@@ -166,6 +176,10 @@ public class Customer implements Serializable {
 
     public String getLastname() {
         return lastname;
+    }
+    
+    public String getIdnumber(){
+        return idnumber;
     }
 
     public String getEmail() {

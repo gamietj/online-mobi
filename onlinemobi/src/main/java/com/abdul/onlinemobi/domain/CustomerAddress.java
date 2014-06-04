@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -22,9 +22,47 @@ public class CustomerAddress implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
-    String streetAddress;
-    String postalAddress;
+    private String streetAddress;
+    private String postalAddress;
+
+       private CustomerAddress(Builder builder){
+           id=builder.id;
+           streetAddress=builder.streetAddress;
+           postalAddress=builder.postalAddress;
+       }
+       
+       public CustomerAddress(){
+           
+       }   
+    public static class Builder{
+        private Long id;
+        private String streetAddress;
+        private String postalAddress;
+        
+        public Builder(String streetAddress){
+            this.streetAddress = streetAddress;
+           }
+        public Builder id(Long value){
+            this.id = value;
+            return this;
+        }
+        public Builder postalAddress(String postal){
+            this.postalAddress = postal;
+            return this;
+        }
+        
+        public Builder customerAddress(CustomerAddress customerAddress){
+            id= customerAddress.getId();
+            streetAddress  = customerAddress.getStreetAddress();
+            postalAddress= customerAddress.getPostalAddress();
+            return this;
+        
+        }
+           public CustomerAddress build(){
+            return new CustomerAddress(this);
+        }
+        
+    }
 
     public static long getSerialVersionUID() {
         return serialVersionUID;

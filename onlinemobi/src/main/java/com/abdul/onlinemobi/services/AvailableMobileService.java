@@ -6,10 +6,15 @@
 
 package com.abdul.onlinemobi.services;
 
+import com.abdul.onlinemobi.domain.MobilePhone;
+import java.util.List;
+
 /**
  *
  * @author Khulsum
  */
 public interface AvailableMobileService {
+    
+    public List<MobilePhone> getAvailableMobiles();
     
 }

@@ -4,47 +4,26 @@
  * and open the template in the editor.
  */
 
-package com.abdul.onlinemobi.services;
+package com.abdul.onlinemobi.repository;
 
 import com.abdul.onlinemobi.app.conf.ConnectionConfig;
-import com.abdul.onlinemobi.domain.Customer;
-import com.abdul.onlinemobi.repository.CustomerRepository;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.testng.Assert;
+import static org.testng.Assert.*;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 /**
  *
  * @author Khulsum
  */
-public class FindCustomerServiceTest {
+public class OrderItemRepositoryTest {
     
     public static ApplicationContext ctx;
-    public FindCustomerService service;
-    public CustomerRepository repo;
     
-    
-    public FindCustomerServiceTest() {
-    }
-    
-    @Test
-    public void FindCustomer(){
-        repo = ctx.getBean(CustomerRepository.class);
-        service = ctx.getBean(FindCustomerService.class);
-        
-        Customer cust1 = new Customer.Builder("gamietj@gmail.com")
-                              .firstname("gamiet")
-                              .idnumber("8704225065083")
-                              .build();
-          repo.save(cust1);
-          Customer customer = service.getCustomer("8704225065083");
-          Assert.assertEquals(customer.getFirstname(),"gamiet");
-         
+    public OrderItemRepositoryTest() {
     }
 
     // TODO add test methods here.

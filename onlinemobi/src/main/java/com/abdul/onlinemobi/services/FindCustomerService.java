@@ -6,10 +6,13 @@
 
 package com.abdul.onlinemobi.services;
 
+import com.abdul.onlinemobi.domain.Customer;
+
 /**
  *
  * @author Khulsum
  */
 public interface FindCustomerService {
+    public Customer getCustomer(String id);
     
 }

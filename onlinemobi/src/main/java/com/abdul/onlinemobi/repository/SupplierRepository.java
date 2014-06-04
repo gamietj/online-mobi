@@ -4,17 +4,17 @@
  * and open the template in the editor.
  */
 
-package com.abdul.onlinemobi.services;
+package com.abdul.onlinemobi.repository;
 
 import com.abdul.onlinemobi.domain.Supplier;
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Khulsum
  */
-public interface ListSupplierService {
-    
-    public List<Supplier>getAllSuppliers();
+@Repository
+public interface SupplierRepository extends JpaRepository<Supplier,Long> {
     
 }

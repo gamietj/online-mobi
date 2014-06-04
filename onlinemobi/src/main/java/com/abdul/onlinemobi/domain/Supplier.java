@@ -14,7 +14,7 @@ import javax.persistence.Id;
 
 /**
  *
- * @author Khulsum
+ * @author Abdul
  */
 @Entity
 public class Supplier implements Serializable {
@@ -22,7 +22,93 @@ public class Supplier implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String supname;
+    private String supaddress;
+    private String supcontact;
+    private String repname;
+    private String repcontact;
+    
+    public static class Builder{
+        
+        private Long id;
+        private String supname;
+        private String supaddress;
+        private String supcontact;
+        private String repname;
+        private String repcontact;
+        
+        public Builder(String supname){
+            this.supname = supname;
+        }
+        
+        public Builder id(Long value){
+            id = value;
+            return this;
+        }
+        
+        public Builder supaddress(String value){
+            supaddress = value;
+            return this;
+         }
+        
+        public Builder supcontact(String value){
+            supcontact = value;
+            return this;
+        }
+        public Builder repname(String value){
+            repname = value;
+            return this;
+        }
+        public Builder repcontact(String value){
+            repcontact = value;
+            return this;
+        }
+        
+        public Builder supplier(Supplier supplier){
+            id = supplier.getId();
+            supname = supplier.getSupname();
+            supaddress = supplier.getSupaddress();
+            supcontact = supplier.getSupcontact();
+            repname = supplier.getRepname();
+            repcontact = supplier.getRepcontact();
+            return this;
+        }
+        
+        public Supplier build(){
+            return new Supplier(this);
+        }
+        
+    
+    }
+    private Supplier(Builder builder){
+        id = builder.id;
+        supname = builder.supname;
+        supaddress=builder.supaddress;
+        supcontact =builder.supaddress;
+        repname = builder.repname;
+        repcontact = builder.repcontact;
+        
+    }
+      
+    public String getSupname() {
+        return supname;
+    }
 
+    public String getSupaddress() {
+        return supaddress;
+    }
+
+    public String getSupcontact() {
+        return supcontact;
+    }
+
+    public String getRepname() {
+        return repname;
+    }
+
+    public String getRepcontact() {
+        return repcontact;
+    }
     public Long getId() {
         return id;
     }

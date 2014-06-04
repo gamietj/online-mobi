@@ -33,16 +33,14 @@ public class TotalCustomerTest {
      
     @Test
      public void TotalCustomerTest() {
-        service = (TotalCustomerService) ctx.getBean(TotalCustomerTest.class);
+         service = ctx.getBean(TotalCustomerService.class);
          List<Customer> customer = service.getTotalCustomer();
-         
-         Assert.assertEquals(0, customer.size(), " Expect no People");
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
-     }
+         Assert.assertEquals(0, customer.size(), "Expect no Customers");
+       }
+     
+  
+     
+   
     @BeforeClass
     public static void setUpClass() throws Exception {
          ctx = new AnnotationConfigApplicationContext(ConnectionConfig.class);

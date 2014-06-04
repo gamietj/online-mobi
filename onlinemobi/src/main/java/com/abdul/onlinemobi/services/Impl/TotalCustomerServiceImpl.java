@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
  *
  * @author Khulsum
  */
-//@Service
+@Service
 public class TotalCustomerServiceImpl implements TotalCustomerService {
     
     

@@ -6,10 +6,26 @@
 
 package com.abdul.onlinemobi.services.Impl;
 
+import com.abdul.onlinemobi.domain.Supplier;
+import com.abdul.onlinemobi.repository.SupplierRepository;
+import com.abdul.onlinemobi.services.ListSupplierService;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 /**
  *
  * @author Khulsum
  */
-public class ListSupplierServiceImpl {
+@Service
+public class ListSupplierServiceImpl implements ListSupplierService{
+
+    
+    @Autowired
+    SupplierRepository supplierRepo;
+    @Override
+    public List<Supplier> getAllSuppliers() {
+    return  supplierRepo.findAll();
+    }
     
 }

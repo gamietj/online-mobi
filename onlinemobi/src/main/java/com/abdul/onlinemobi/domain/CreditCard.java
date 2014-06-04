@@ -24,6 +24,67 @@ public class CreditCard implements Serializable {
     private Long id;
     private int creditNumber;
     private String expiryDate;
+    private String owner;
+    private String balance;
+    
+    private CreditCard(Builder builder){
+        id=builder.id;
+        creditNumber=builder.creditNumber;
+        expiryDate=builder.expiryDate;
+        owner=builder.owner;
+        balance=builder.balance;
+        
+    }
+    
+        public static class Builder{
+        
+        private Long id;
+        private int creditNumber;
+        private String expiryDate;
+        private String owner;
+        private String balance;
+        
+        public Builder(int creditNumber){
+            this.creditNumber = creditNumber;
+        }
+        
+        public Builder id(Long value){
+            id = value;
+            return this;
+        }
+        
+        public Builder expiryDate(String value){
+            expiryDate = value;
+            return this;
+        }
+        public Builder owner(String value){
+            owner = value;
+            return this;
+        }
+        
+        public Builder balance(String value){
+            balance = value;
+            return this;
+        }
+        
+        public Builder creditCard(CreditCard creditCard){
+            id = creditCard.getId();
+            creditNumber = creditCard.getCreditNumber();
+            expiryDate = creditCard.getExpiryDate();
+            owner = creditCard.getOwner();
+            balance= creditCard.getBalance();
+            return this;
+        }
+        
+        public CreditCard build(){
+            return new CreditCard(this);
+        }
+             
+        
+    }
+    private CreditCard(){
+        
+    }
 
     public int getCreditNumber() {
         return creditNumber;
@@ -40,8 +101,7 @@ public class CreditCard implements Serializable {
     public String getBalance() {
         return balance;
     }
-    private String owner;
-    private String balance;
+   
    
     public Long getId() {
         return id;
