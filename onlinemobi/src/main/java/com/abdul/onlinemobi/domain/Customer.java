@@ -29,164 +29,156 @@ public class Customer implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
-    private String firstname;
-    private String lastname;
-    private String idnumber;
-    private int age;
-    @Column(unique = true)
-    private String email;
+    private String customerNumber;
+    @Embedded
+    private Name name;
     @Embedded
     private Contact contact;
+   
+    
+    @OneToOne
+    private CustomerAddress address;
+    
     @Embedded
     private Demographic demographic;
-
-
-    
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "customer_id")
+    @OneToMany
     List<Orders> order;
+    @OneToMany
+    List<CreditCard>creditCard;
+    private String custId;
     
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "customer_id")
-    List<CreditCard> creditcard;
-  
-    private Customer(Builder builder) {
-        id= builder.id;
-        firstname = builder.firstname;
-        lastname=builder.lastname;
-        idnumber=builder.idnumber;
-        age = builder.age;
-        email = builder.email;
+    public Customer(){
+        
+    }
+    
+    private Customer(Builder builder){
+        id = builder.id;
+        customerNumber = builder.customerNumber;
+        name = builder.name;
         contact = builder.contact;
+        address = builder.address;
         demographic = builder.demographic;
         order = builder.order;
-        creditcard = builder.creditcard;
-       }
+        creditCard = builder.creditCard;
+        custId = builder.custId;
+        
+    }
     
-    public Customer() {
-        }
-
-  
     
-    public static class Builder {
-
+    public static class Builder{
+        
         private Long id;
-        private String firstname;
-        private String lastname;
-        private String idnumber;
-        private int age;
-        private String email;
+        private String customerNumber;
+        private Name name; 
         private Contact contact;
+        private CustomerAddress address;
         private Demographic demographic;
         List<Orders> order;
-        List<CreditCard> creditcard;
-
-       
+        List<CreditCard>creditCard;
+        private String custId;
         
-        public Builder(String email) {
-            this.email = email;
-        }
-
-        public Builder id(Long value) {
+        public Builder(String customerNumber){
+            this.customerNumber = customerNumber;
+        }  
+        
+        public Builder id(Long value){
             id = value;
             return this;
         }
-
-        public Builder firstname(String value) {
-            firstname = value;
+        
+        public Builder name(Name value)
+        {
+            name = value;
             return this;
         }
-
-        public Builder lastnaname(String value) {
-            lastname = value;
-            return this;
-        }
-        public Builder idnumber(String value){
-            idnumber=value;
-            return this;
-        }
-
-        public Builder age(int value) {
-            age = value;
-            return this;
-        }
-
-        public Builder contact(Contact value) {
+        public Builder contact(Contact value){
             contact = value;
             return this;
         }
-        public Builder Demographic(Demographic value){
+        
+        public Builder address(CustomerAddress value){
+            address = value;
+            return this;
+        }
+        public Builder demographic(Demographic value){
             demographic = value;
             return this;
         }
-
-          public Builder order(List<Orders> value) {
-              order = value;
-              return this;
-         }
         
-        public Builder creditcard(List<CreditCard> value) {
-            creditcard = value;
-            return this;
-        }
-        public Builder customer(Customer customer){
-            id = customer.getId();
-            firstname = customer.getFirstname();
-            lastname = customer.getLastname();
-            idnumber = customer.getIdnumber();
-            age = customer.getAge();
-            email = customer.getEmail();
-            order = customer.getOrder();
-            creditcard = customer.getCreditCard();
-            contact = customer.getContact();
+        public Builder order(List<Orders> value){
+            order = value;
             return this;
             
         }
-        
-         public Customer build(){
-            return new Customer(this);
+        public Builder creditCard(List<CreditCard> value){
+            creditCard = value;
+            return this;
+            
+        }
+        public Builder custId(String value){
+            custId =  value;
+            return this;
         }
         
+        public Builder Customer(Customer value){
+            id = value.getId();
+            customerNumber = value.getCustomerNumber();
+            name = value.getName();
+            contact = value.getContact();
+            address = value.getAddress();
+            demographic = value.getDemographic();
+            order = value.getOrder();
+            creditCard = value.getCreditCard();
+            custId = value.getCustId();
+            
+            return this;
+        }
+        
+        public Customer build(){
+            return new Customer(this);
+        }
+     
+        
     }
     
-      public List<CreditCard> getCreditCard() {
-        return creditcard;
+    public Contact getContact() {
+        return contact;
     }
-
-    public int getAge() {
-        return age;
+    public String getCustId(){
+        return custId;
     }
     
-      public List<Orders> getOrder() {
-          return order;
-      }
+      public CustomerAddress getAddress() {
+        return address;
+    }
 
+    public String getCustomerNumber() {
+        return customerNumber;
+    }
+
+    public Name getName() {
+        return name;
+    }
+
+    public Demographic getDemographic() {
+        return demographic;
+    }
+
+    public List<Orders> getOrder() {
+        return order;
+    }
+
+    public List<CreditCard> getCreditCard() {
+        return creditCard;
+    }
+    
+    
     public Long getId() {
         return id;
     }
 
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public Contact getContact() {
-        return contact;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-    
-    public String getIdnumber(){
-        return idnumber;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-        public Demographic getDemographic() {
-        return demographic;
+    public void setId(Long id) {
+        this.id = id;
     }
              
   

@@ -29,6 +29,9 @@ public class Orders implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String invNumber;
+
+   
     private int orderNumber;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date orderDate;
@@ -42,10 +45,15 @@ public class Orders implements Serializable {
     @JoinColumn(name="order_id")
     private List<OrderItem> orderItems;
     
+    public Orders(){
+        
+    }
+    
     public static class Builder {
         
         private Long id;
         private int orderNumber;
+        private String invNumber;
         private Date date;
         private Customer customer;
         List<OrderItem>orderItems;
@@ -56,6 +64,10 @@ public class Orders implements Serializable {
         
         public Builder id(Long value){
             id = value;
+            return this;
+        }
+        public Builder invNumber(String value){
+            invNumber = value;
             return this;
         }
         
@@ -76,6 +88,7 @@ public class Orders implements Serializable {
         
         public Builder order(Orders orders){
                id = orders.getId();
+               invNumber = orders.getInvNumber();
                orderNumber = orders.getOrderNumber();
                date = orders.getOrderDate();
                customer = orders.getCustomer();
@@ -93,6 +106,7 @@ public class Orders implements Serializable {
     
     private Orders (Builder builder){
         id = builder.id;
+        invNumber =  builder.invNumber;
         orderNumber = builder.orderNumber;
         orderDate = builder.date;
         customer = builder.customer;
@@ -107,6 +121,10 @@ public class Orders implements Serializable {
 
     public Date getOrderDate() {
         return orderDate;
+    }
+    
+     public String getInvNumber() {
+        return invNumber;
     }
 
     public Customer getCustomer() {

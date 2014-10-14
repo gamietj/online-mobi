@@ -8,6 +8,7 @@ package com.abdul.onlinemobi.services;
 
 import com.abdul.onlinemobi.app.conf.ConnectionConfig;
 import com.abdul.onlinemobi.domain.Customer;
+import com.abdul.onlinemobi.domain.Name;
 import com.abdul.onlinemobi.repository.CustomerRepository;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -34,16 +35,19 @@ public class FindCustomerServiceTest {
     
     @Test
     public void FindCustomer(){
+        Name name = new Name();
+         name.setFirstName("Justin");
+         name.setLastName("Drake");
         repo = ctx.getBean(CustomerRepository.class);
         service = ctx.getBean(FindCustomerService.class);
         
         Customer cust1 = new Customer.Builder("gamietj@gmail.com")
-                              .firstname("gamiet")
-                              .idnumber("8704225065083")
+                              .name(name)
+                              .custId("8704225065084")
                               .build();
           repo.save(cust1);
           Customer customer = service.getCustomer("8704225065083");
-          Assert.assertEquals(customer.getFirstname(),"gamiet");
+          Assert.assertEquals(customer.getName().getFirstName(),"Justin");
          
     }
 

@@ -26,37 +26,31 @@ public class OrderItem implements Serializable {
      private Long id;
      @Column(name = "quantity")
      private int quantity;
-
-    public Long getId() {
-        return id;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public MobilePhone getMobilephone() {
-        return mobilephone;
-    }
      @OneToOne
      private MobilePhone mobilephone;
-     
+
+       
      public OrderItem(){
      }
      
     public static class Builder{
      
       private Long id;
+    
       private int quantity;
       private MobilePhone mobilephone;
       
-      public Builder (Long id){
+      
+       public Builder(int quantity){
+            this.quantity = quantity;
+        }
+       
+       
+      public Builder id  (Long id){
           this.id = id;
-      }
-      public Builder quantity(int value){
-          quantity = value;
           return this;
       }
+     
       public Builder mobilphone(MobilePhone value)
       {              
          mobilephone = value;
@@ -80,6 +74,19 @@ public class OrderItem implements Serializable {
         quantity = builder.quantity;
         mobilephone = builder.mobilephone;
         
+    }
+    
+    
+    public Long getId() {
+        return id;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public MobilePhone getMobilephone() {
+        return mobilephone;
     }
 
   

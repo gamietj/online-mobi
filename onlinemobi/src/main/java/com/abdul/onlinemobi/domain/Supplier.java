@@ -7,10 +7,14 @@
 package com.abdul.onlinemobi.domain;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -22,23 +26,51 @@ public class Supplier implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String supname;
-    private String supaddress;
-    private String supcontact;
-    private String repname;
-    private String repcontact;
+    private String supNumber;
+    @Embedded
+    private SupplierName supname;
+    @Embedded
+    private SupplierContact contact;
+    @OneToOne
+    private SupplierAddress supaddress;
+    @OneToMany
+    List<MobilePhone> mobilephone;
+    
+     public Supplier(){
+        
+    }
+    
+     private Supplier(Builder builder){
+        id = builder.id;
+        supNumber = builder.suppNumber;
+        supname = builder.supname;
+        supaddress=builder.supaddress;
+        contact =builder.supcontact;
+        mobilephone = builder.mobilephone;
+        
+        
+    }
+      
+    
     
     public static class Builder{
         
         private Long id;
-        private String supname;
-        private String supaddress;
-        private String supcontact;
-        private String repname;
-        private String repcontact;
-        
-        public Builder(String supname){
+        private String suppNumber;
+        private SupplierName supname;
+        private SupplierContact supcontact;
+        private SupplierAddress supaddress;
+        List<MobilePhone> mobilephone;
+       
+     
+        public Builder(String suppNumber)
+        {
+            this.suppNumber = suppNumber;
+            
+        }
+        public Builder supName(SupplierName supname){
             this.supname = supname;
+            return this;
         }
         
         public Builder id(Long value){
@@ -46,31 +78,29 @@ public class Supplier implements Serializable {
             return this;
         }
         
-        public Builder supaddress(String value){
+        public Builder supaddress(SupplierAddress value){
             supaddress = value;
             return this;
          }
         
-        public Builder supcontact(String value){
+        public Builder supcontact(SupplierContact value){
             supcontact = value;
             return this;
         }
-        public Builder repname(String value){
-            repname = value;
+        
+        public Builder mobilephone(List< MobilePhone> value){
+            mobilephone = value;
             return this;
         }
-        public Builder repcontact(String value){
-            repcontact = value;
-            return this;
-        }
+        
+       
         
         public Builder supplier(Supplier supplier){
             id = supplier.getId();
             supname = supplier.getSupname();
             supaddress = supplier.getSupaddress();
-            supcontact = supplier.getSupcontact();
-            repname = supplier.getRepname();
-            repcontact = supplier.getRepcontact();
+            supcontact = supplier.getContact();
+            mobilephone = supplier.getMobilephone();
             return this;
         }
         
@@ -80,35 +110,31 @@ public class Supplier implements Serializable {
         
     
     }
-    private Supplier(Builder builder){
-        id = builder.id;
-        supname = builder.supname;
-        supaddress=builder.supaddress;
-        supcontact =builder.supaddress;
-        repname = builder.repname;
-        repcontact = builder.repcontact;
-        
-    }
-      
-    public String getSupname() {
+
+    public SupplierName getSupname() {
         return supname;
     }
 
-    public String getSupaddress() {
+    public SupplierContact getContact() {
+        return contact;
+    }
+
+    public SupplierAddress getSupaddress() {
         return supaddress;
     }
 
-    public String getSupcontact() {
-        return supcontact;
+    public List<MobilePhone> getMobilephone() {
+        return mobilephone;
     }
 
-    public String getRepname() {
-        return repname;
+    public String getSupNumber() {
+        return supNumber;
     }
-
-    public String getRepcontact() {
-        return repcontact;
-    }
+    
+   
+   
+    
+    
     public Long getId() {
         return id;
     }

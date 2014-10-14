@@ -8,6 +8,7 @@ package com.abdul.onlinemobi.repository;
 
 import com.abdul.onlinemobi.app.conf.ConnectionConfig;
 import com.abdul.onlinemobi.domain.Customer;
+import com.abdul.onlinemobi.domain.Name;
 import com.abdul.onlinemobi.repository.CustomerRepository;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -31,11 +32,15 @@ public class CustomerRepositoryTest {
     
     @Test
      public void createCustomer() {
+         
+         Name name = new Name();
+         name.setFirstName("Justin");
+         name.setLastName("Drake");
+         
          repo = ctx.getBean(CustomerRepository.class);
          Customer c = new Customer.Builder("gamiet@gmail.com")
-                  .firstname("Justin")
-                 .lastnaname("Drake")
-                 .build();
+                     .name(name)
+                     .build();
          repo.save(c);
          id = c.getId();
          Assert.assertNotNull(c);
@@ -47,23 +52,25 @@ public class CustomerRepositoryTest {
      public void readCustomer(){
          repo = ctx.getBean(CustomerRepository.class);
          Customer customer = repo.findOne(id);
-         Assert.assertEquals(customer.getFirstname(), "Justin");
+         Assert.assertEquals(customer.getName().getFirstName(), "Justin");
          
      }
      
     @Test(dependsOnMethods = "readCustomer")
      private void updateCustomer(){
+         Name name = new Name();
+         name.setFirstName("Abdul");
          repo = ctx.getBean(CustomerRepository.class);
          Customer customer = repo.findOne(id);
          Customer updatedCustomer = new Customer.Builder("gamiet@gmail.com")
-                 .customer(customer)
-                 .firstname("Abdul")
+                 .Customer(customer)
+                 .name(name)
                  .build();
         
          repo.save(updatedCustomer);
          
          Customer newCustomer = repo.findOne(id);
-         Assert.assertEquals(newCustomer.getFirstname(),"Abdul");
+         Assert.assertEquals(newCustomer.getName().getFirstName(),"Abdul");
          
      }
      
