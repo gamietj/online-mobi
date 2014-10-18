@@ -54,7 +54,7 @@ public class OrderItemRepositoryTest {
          repo=ctx.getBean(OrderItemRepository.class);
          OrderItem i = repo.findOne(id);
          OrderItem updateitem = new OrderItem.Builder(3)
-                                .OrderItem(i)
+                                .id(id)
                                 .build();
          repo.save(updateitem);
          OrderItem newItem = repo.findOne(id);

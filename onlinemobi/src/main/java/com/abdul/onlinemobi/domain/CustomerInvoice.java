@@ -28,7 +28,7 @@ public class CustomerInvoice implements Serializable {
     private Long id;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date invoiceDate;
-    private BigDecimal orderAmount;
+    private double orderAmount;
     private String invoiceStatus;
     @OneToOne 
     private Orders order;
@@ -52,14 +52,14 @@ public class CustomerInvoice implements Serializable {
       
     private Long id;
     private Date invoiceDate;
-    private BigDecimal orderAmount;
+    private double orderAmount;
     private String invoiceStatus;
     private Orders order;
     
     
     
     
-    public Builder(BigDecimal orderAmount){
+    public Builder(Double orderAmount){
          this.orderAmount = orderAmount;
      }
     public Builder id (Long value){
@@ -72,7 +72,7 @@ public class CustomerInvoice implements Serializable {
         return this;
     }
     
-    public Builder orderAmount(BigDecimal value){
+    public Builder orderAmount(Double value){
         orderAmount = value;
         return this;
     }
@@ -105,7 +105,7 @@ public class CustomerInvoice implements Serializable {
         return invoiceDate;
     }
 
-    public BigDecimal getOrderAmount() {
+    public Double getOrderAmount() {
         return orderAmount;
     }
 

@@ -8,6 +8,7 @@ package com.abdul.onlinemobi.repository;
 
 import com.abdul.onlinemobi.app.conf.ConnectionConfig;
 import com.abdul.onlinemobi.domain.CustomerInvoice;
+import com.abdul.onlinemobi.repository.CustomerInvoiceRepository;
 import java.math.BigDecimal;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -37,7 +38,7 @@ public class CustomerInvoiceRepositoryTest {
     @Test 
     public void createCustInvoice(){
         
-        BigDecimal invoice = new BigDecimal(23423.435);
+        double invoice =233.435;
         repo = ctx.getBean(CustomerInvoiceRepository.class);
         CustomerInvoice c = new CustomerInvoice.Builder(invoice)
                             .invoiceStatus("open")
@@ -55,7 +56,7 @@ public class CustomerInvoiceRepositoryTest {
     }
     @Test(dependsOnMethods = "readCustInvoice")
     public void updateCustInvoice(){
-        BigDecimal invoice = new BigDecimal(234.090);
+        double invoice =234.09;
         repo = ctx.getBean(CustomerInvoiceRepository.class);
         CustomerInvoice c = repo.findOne(id);
         CustomerInvoice updateCustomerInvoice= new CustomerInvoice.Builder(invoice) 
@@ -64,7 +65,7 @@ public class CustomerInvoiceRepositoryTest {
                                             .build();
         repo.save(updateCustomerInvoice);
         CustomerInvoice newCustomerInvoice= repo.findOne(id);
-        Assert.assertEquals(newCustomerInvoice.getInvoiceStatus(),"closed");
+        Assert.assertEquals(newCustomerInvoice.getInvoiceStatus(),"close");
         
     }
     @Test(dependsOnMethods = "updateCustInvoice")
