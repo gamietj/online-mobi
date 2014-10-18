@@ -5,14 +5,15 @@
 package com.abdul.onlinemobi.services;
 
 import com.abdul.onlinemobi.domain.CreditCard;
-import java.util.List;
+//import com.abdul.onlinemobi.domain.Customer;
+//import java.util.List;
 
 /**
  *
  * @author Lucrecia
  */
 public interface CreditService {
-        public List<CreditCard>getAllCredit();
+        public String getCreditBalance(int creditNumber);
 
     
 }
