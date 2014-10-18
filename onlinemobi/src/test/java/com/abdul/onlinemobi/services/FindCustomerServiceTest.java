@@ -41,9 +41,8 @@ public class FindCustomerServiceTest {
         repo = ctx.getBean(CustomerRepository.class);
         service = ctx.getBean(FindCustomerService.class);
         
-        Customer cust1 = new Customer.Builder("gamietj@gmail.com")
+        Customer cust1 = new Customer.Builder("8704225065083")
                               .name(name)
-                              .custId("8704225065084")
                               .build();
           repo.save(cust1);
           Customer customer = service.getCustomer("8704225065083");

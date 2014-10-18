@@ -35,7 +35,7 @@ public class FindCustomerServiceImpl implements FindCustomerService {
         List<Customer> allcustomer = customerRepo.findAll();
                 
         for (Customer customers: allcustomer) {
-            if (Objects.equals(customers.getId(), id)) {
+            if (Objects.equals(customers.getCustomerNumber(), id)) {
                   customer = customers;
                }
            
