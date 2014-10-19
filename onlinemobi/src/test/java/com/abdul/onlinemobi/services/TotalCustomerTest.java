@@ -31,7 +31,7 @@ public class TotalCustomerTest {
     public TotalCustomerTest() {
     }
      
-    @Test
+    //@Test
      public void TotalCustomerTest() {
          service = ctx.getBean(TotalCustomerService.class);
          List<Customer> customer = service.getTotalCustomer();

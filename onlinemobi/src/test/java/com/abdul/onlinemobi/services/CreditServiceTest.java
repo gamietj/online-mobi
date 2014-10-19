@@ -32,7 +32,7 @@ public class CreditServiceTest {
     
     public CreditServiceTest() {
     }
-    @Test
+    //@Test
     public void FindCredit(){
         //private int creditNumber;
         
