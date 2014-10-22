@@ -117,9 +117,7 @@ public class CustomerInvoice implements Serializable {
         return order;
     }
     
-    
-    
-    
+        
 
     public Long getId() {
         return id;
